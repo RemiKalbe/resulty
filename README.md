@@ -2,7 +2,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/resulty)](https://pypi.org/project/resulty/)
 [![Python Version](https://img.shields.io/pypi/pyversions/resulty)](https://pypi.org/project/resulty/)
-[![License](https://img.shields.io/pypi/l/resulty)](https://github.com/yourusername/resulty/blob/main/LICENSE)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/remikalbe/resulty/test-check.yaml)](https://github.com/RemiKalbe/resulty/actions/workflows/test-check.yaml)
+[![Codecov](https://img.shields.io/codecov/c/github/remikalbe/resulty)]()
 
 `Resulty` is a Python library that provides a `Result` type for handling errors and exceptions in a functional programming style, inspired by the `Result` type in Rust 🦀. It offers a wide range of methods and features to handle errors and exceptions in a more expressive and composable way.
 
