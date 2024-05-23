@@ -45,7 +45,7 @@ build = "hatch build"
 publish = "hatch publish"
 
 [tool.pixi.feature.test.tasks]
-test = "pytest --tb=long -vv"
+test = "pytest --tb=long --cov -vv"
 
 [tool.pixi.feature.dev.dependencies]
 ruff = ">=0.4.4,<0.5"
@@ -55,6 +55,7 @@ hatch = ">=1.11.0,<1.12"
 [tool.pixi.feature.test.dependencies]
 pytest-asyncio = ">=0.23.6,<0.24"
 pytest = ">=8.2.1,<8.3"
+pytest-cov = ">=5.0.0,<5.1"
 
 #[tool.pixi.feature.py313.dependencies]
 #python = ">=3.13,<3.14"

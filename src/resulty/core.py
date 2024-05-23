@@ -637,6 +637,44 @@ class Result[T, E]:
             f(self.value)
         return self
 
+    def inspect_err(self, f: Callable[[E], None]) -> "Result[T, E]":
+        """
+        Calls the given function `f` with the error contained in the Result object if it is Err.
+        Returns the Result object as is.
+
+        Args:
+            f (Callable[[E], None]): A callable that takes an error of type `E` and returns `None`.
+
+        Returns:
+            Result[T, E]: The Result object as is.
+
+        Examples:
+            >>> ok_result = Ok(42)
+            >>> inspect_calls = []
+            >>> ok_result.inspect_err(
+            ...     lambda x: inspect_calls.append(
+            ...         x
+            ...     )
+            ... )
+            Ok(42)
+            >>> inspect_calls
+            []
+            >>> err_result = Err("Error")
+            >>> inspect_calls = []
+            >>> err_result.inspect_err(
+            ...     lambda x: inspect_calls.append(
+            ...         x
+            ...     )
+            ... )
+            Err(Error)
+            >>> inspect_calls
+            ['Error']
+        """
+        if self.error is not None:
+            f(self.error)
+        return self
+
+
     def and_also[U](self, res: "Result[U, E]") -> "Result[U, E]":
         """
         Returns the given Result object `res` if this Result object is Ok.
