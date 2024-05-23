@@ -14,8 +14,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.0
         with:
           environments: ${{ matrix.environment }}
-          activate-environment: ${{ matrix.environment }}
       - name: Build
-        run: pixi r build
+        run: pixi r -e ${{ matrix.environment }} build
       - name: Publish
-        run: pixi r publish
+        run: pixi r -e ${{ matrix.environment }} publish
