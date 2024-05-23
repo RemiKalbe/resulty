@@ -1,9 +1,6 @@
 name: Build 🏗️ & Publish 🚀
 
-on:
-  workflow_call:
-    tags:
-      - "v*"
+on: workflow_call
 
 jobs:
   build-publish:
