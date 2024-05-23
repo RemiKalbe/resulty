@@ -3,7 +3,7 @@ name = "resulty"
 version = "0.1.0"
 description = "A rust like Result type for Python"
 authors = [{ name = "Rémi Kalbe", email = "me@remi.boo" }]
-requires-python = ">=3.9,<3.13"
+requires-python = ">=3.12,<3.13"
 readme = "README.md"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -30,14 +30,10 @@ platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
 default = { features = [], solve-group = "default" }
 test = { features = ["test"], solve-group = "test" }
 dev = { features = ["dev"], solve-group = "dev" }
+#test-py313 = { features = ["test", "py313"], solve-group = "test-py313" }
 test-py312 = { features = ["test", "py312"], solve-group = "test-py312" }
-test-py311 = { features = ["test", "py311"], solve-group = "test-py311" }
-test-py310 = { features = ["test", "py310"], solve-group = "test-py310" }
-test-py39 = { features = ["test", "py39"], solve-group = "test-py39" }
+#dev-py313 = { features = ["dev", "py313"], solve-group = "dev-py313" }
 dev-py312 = { features = ["dev", "py312"], solve-group = "dev-py312" }
-dev-py311 = { features = ["dev", "py311"], solve-group = "dev-py311" }
-dev-py310 = { features = ["dev", "py310"], solve-group = "dev-py310" }
-dev-py39 = { features = ["dev", "py39"], solve-group = "dev-py39" }
 
 [tool.pixi.feature.dev.tasks]
 check = "ruff check"
@@ -60,17 +56,11 @@ hatch = ">=1.11.0,<1.12"
 pytest-asyncio = ">=0.23.6,<0.24"
 pytest = ">=8.2.1,<8.3"
 
+#[tool.pixi.feature.py313.dependencies]
+#python = ">=3.13,<3.14"
+
 [tool.pixi.feature.py312.dependencies]
 python = ">=3.12,<3.13"
-
-[tool.pixi.feature.py311.dependencies]
-python = ">=3.11,<3.12"
-
-[tool.pixi.feature.py310.dependencies]
-python = ">=3.10,<3.11"
-
-[tool.pixi.feature.py39.dependencies]
-python = ">=3.9,<3.10"
 
 
 #
