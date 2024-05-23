@@ -19,6 +19,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.0
         with:
           environments: ${{ matrix.environment }}
+          activate-environment: ${{ matrix.environment }}
       - name: Run tests
         run: pixi r test
 
@@ -32,6 +33,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.0
         with:
           environments: ${{ matrix.environment }}
+          activate-environment: ${{ matrix.environment }}
       - name: Run check
         run: pixi r check
 
