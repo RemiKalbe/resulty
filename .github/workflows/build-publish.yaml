@@ -20,4 +20,4 @@ jobs:
       - name: Build
         run: pixi r -e ${{ matrix.environment }} build
       - name: Publish
-        run: pixi r -e ${{ matrix.environment }} publish-ci
+        run: pixi r -e ${{ matrix.environment }} publish-ci --auth ${{ secrets.PYPI_TOKEN }}
