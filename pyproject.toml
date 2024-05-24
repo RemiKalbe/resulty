@@ -42,8 +42,10 @@ check-watch = "ruff check --watch"
 check-fix-watch = "ruff check --fix --watch"
 format = "ruff format"
 build = "hatch build"
-publish = "hatch publish"
-publish-ci = { cmd = "hatch publish dist --no-prompt --repo https://upload.pypi.org/legacy/", env = { HATCH_INDEX_USER = "__token__", HATCH_INDEX_AUTH = "" } }
+#publish = "hatch publish"
+#publish-ci = { cmd = "hatch publish dist --no-prompt --repo https://upload.pypi.org/legacy/", env = { HATCH_INDEX_USER = "__token__", HATCH_INDEX_AUTH = "" } }
+publish = "twine upload dist/* --repository pypi"
+publish-ci = "twine upload dist/* --non-interactive --repository pypi"
 
 [tool.pixi.feature.test.tasks]
 test = "pytest --tb=long --cov --cov-report xml -vv"

@@ -10,8 +10,8 @@ jobs:
       matrix:
         environment: [dev-py312]
     env:
-      HATCH_INDEX_USER: __token__
-      HATCH_INDEX_AUTH: ${{ secrets.PYPI_TOKEN }}
+      PYPI_USER: __token__
+      PYPY_TOKEN: ${{ secrets.PYPI_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: prefix-dev/setup-pixi@v0.8.0
@@ -20,4 +20,4 @@ jobs:
       - name: Build
         run: pixi r -e ${{ matrix.environment }} build
       - name: Publish
-        run: pixi r -e ${{ matrix.environment }} publish-ci --auth $HATCH_INDEX_AUTH --user $HATCH_INDEX_USER
+        run: pixi r -e ${{ matrix.environment }} publish-ci --password $PYPY_TOKEN --username $PYPI_USER
