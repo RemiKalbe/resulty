@@ -555,8 +555,8 @@ These decorators provide a convenient way to handle error propagation when calli
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](link-to-repository).
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## License
 
-`resulty` is licensed under the [MIT License](link-to-license).
+`resulty` is licensed under the [MIT License](LICENSE).
