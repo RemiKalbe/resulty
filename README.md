@@ -74,8 +74,6 @@ err_result = Err("An error occurred")
 
 Both `Ok` and `Err` functions can wrap any value.
 
-You're right, I apologize for the oversight. Let's focus on the "Checking the State of a Result" section and provide more detailed explanations, including the `and_also` and `or_if` methods.
-
 ## Checking the State of a `Result`
 
 `resulty` provides several methods to check the state of a `Result` instance and perform conditional operations based on its variant (`Ok` or `Err`).
@@ -185,8 +183,6 @@ print(ok_result.or_if(err_result))  # Output: Ok(42)
 print(err_result.or_if(other_ok_result))  # Output: Ok(0)
 print(err_result.or_if(other_err_result))  # Output: Err("Another error occurred")
 ```
-
-Great! Let's dive into the "Unwrapping Values and Handling Errors" section and provide detailed explanations for each method.
 
 ## Unwrapping Values and Handling Errors
 
@@ -324,8 +320,6 @@ err_result = Err("An error occurred")
 print(err_result.unwrap_or_else(lambda x: len(x)))  # Output: 17 (length of the error message)
 ```
 
-Great! Let's move on to the "Transforming and Mapping `Result` Values" section and provide detailed explanations for each method.
-
 ## Transforming and Mapping `Result` Values
 
 `resulty` provides several methods to transform and map the value contained in a `Result` instance. These methods allow you to apply functions to the contained value or error, or provide default values in case of an `Err` variant.
@@ -401,8 +395,6 @@ err_result = Err("An error occurred")
 mapped_value = err_result.map_or_else(lambda x: len(x), lambda x: x * 2)
 print(mapped_value)  # Output: 18
 ```
-
-Excellent! Let's dive into the "Combining `Result` Values" section and provide detailed explanations for each method.
 
 ## Combining `Result` Values
 
