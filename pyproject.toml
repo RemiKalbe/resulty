@@ -43,6 +43,7 @@ check-fix-watch = "ruff check --fix --watch"
 format = "ruff format"
 build = "hatch build"
 publish = "hatch publish"
+publish-ci = "hatch publish --no-interactive --no-prompt --yes"
 
 [tool.pixi.feature.test.tasks]
 test = "pytest --tb=long --cov --cov-report xml -vv"
