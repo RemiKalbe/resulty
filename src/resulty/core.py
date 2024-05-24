@@ -832,6 +832,11 @@ class Result[T, E]:
         """
         return Result(copy.deepcopy(self.value), copy.deepcopy(self.error))
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Result):
+            return False
+        return self.value == other.value and self.error == other.error
+
     def __str__(self) -> str:
         if self.error is not None:
             return f"Err({self.error})"
