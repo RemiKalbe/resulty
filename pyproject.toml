@@ -45,7 +45,7 @@ build = "hatch build"
 publish = "hatch publish"
 
 [tool.pixi.feature.test.tasks]
-test = "pytest --tb=long --cov-report xml -vv"
+test = "pytest --tb=long --cov --cov-report xml -vv"
 
 [tool.pixi.feature.dev.dependencies]
 ruff = ">=0.4.4,<0.5"
