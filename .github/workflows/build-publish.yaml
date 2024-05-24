@@ -15,4 +15,4 @@ jobs:
       - name: Build
         run: hatch build
       - name: Publish
-        run: hatch publish --user $PYPI_USER --token ${{ secrets.PYPI_TOKEN }} --no-prompt
+        run: hatch publish --user $PYPI_USER --auth ${{ secrets.PYPI_TOKEN }} --no-prompt
