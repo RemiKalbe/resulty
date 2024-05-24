@@ -1,7 +1,7 @@
-from typing import Callable, Coroutine
+from collections.abc import Callable, Coroutine
 from functools import wraps
 
-from .core import Result, PropagatedResultException
+from .core import PropagatedResultException, Result  # noqa: TID252
 
 
 def propagate_result[T, E](f: Callable[..., Result[T, E]]) -> Callable[..., Result[T, E]]:

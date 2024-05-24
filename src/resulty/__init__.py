@@ -1,6 +1,5 @@
 # Re-export the classes from the other modules
-from . import core
-from . import wraps
+from . import core, wraps  # noqa: TID252
 
 Result = core.Result
 ResultException = core.ResultException

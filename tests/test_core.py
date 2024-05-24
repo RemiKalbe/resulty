@@ -1,16 +1,19 @@
+# ruff: noqa: TRY003, EM101, ARG005, PT011
+
 import sys
 
 sys.path.append("..")
 
 import pytest
+
 from src.resulty import (
-    Result,
-    Ok,
     Err,
-    ResultException,
+    Ok,
     PropagatedResultException,
-    propagate_result,
+    Result,
+    ResultException,
     async_propagate_result,
+    propagate_result,
 )
 
 
@@ -287,3 +290,79 @@ def test_up_with_propagate_result():
     result = error_func()
     assert result.is_err()
     assert result.error == "Error"
+
+
+def test_and_also():
+    ok_result = Ok(42)
+    other_result = Ok("Hello")
+    assert ok_result.and_also(other_result) == other_result
+
+    err_result = Err("Error")
+    other_result = Ok("Hello")
+    assert err_result.and_also(other_result) == err_result
+
+
+def test_and_then():
+    ok_result = Ok(42)
+    assert ok_result.and_then(lambda x: Ok(x * 2)) == Ok(84)
+    assert ok_result.and_then(lambda x: Err("Error")) == Err("Error")
+
+    err_result = Err("Error")
+    assert err_result.and_then(lambda x: Ok(x * 2)) == Err("Error")
+
+
+def test_or_if():
+    ok_result = Ok(42)
+    other_result = Ok(0)
+    assert ok_result.or_if(other_result) == ok_result
+
+    err_result = Err("Error")
+    other_result = Ok(0)
+    assert err_result.or_if(other_result) == other_result
+
+    err_result = Err("Error")
+    other_err_result = Err("Other Error")
+    assert err_result.or_if(other_err_result) == other_err_result
+
+
+def test_or_else():
+    ok_result = Ok(42)
+    assert ok_result.or_else(lambda x: Ok(0)) == ok_result
+
+    err_result = Err("Error")
+    assert err_result.or_else(lambda x: Ok(0)) == Ok(0)
+    assert err_result.or_else(lambda x: Err("Other Error")) == Err("Other Error")
+
+
+def test_clone():
+    ok_result = Ok(42)
+    cloned_result = ok_result.clone()
+    assert ok_result == cloned_result
+    assert ok_result is not cloned_result
+
+    err_result = Err("Error")
+    cloned_result = err_result.clone()
+    assert err_result == cloned_result
+    assert err_result is not cloned_result
+
+
+def test_inspect_err():
+    ok_result = Ok(42)
+    inspect_calls = []
+    result = ok_result.inspect_err(lambda x: inspect_calls.append(x))
+    assert result == ok_result
+    assert inspect_calls == []
+
+    err_result = Err("Error")
+    inspect_calls = []
+    result = err_result.inspect_err(lambda x: inspect_calls.append(x))
+    assert result == err_result
+    assert inspect_calls == ["Error"]
+
+
+def test_unwrap_or_else():
+    ok_result = Ok(42)
+    assert ok_result.unwrap_or_else(lambda x: 0) == 42
+
+    err_result = Err("Error")
+    assert err_result.unwrap_or_else(lambda x: len(x)) == 5

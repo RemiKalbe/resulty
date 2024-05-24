@@ -1,8 +1,9 @@
-from typing import Any, Awaitable, Callable, Optional
 import copy
+from collections.abc import Awaitable, Callable
+from typing import Any
 
 
-class ResultException[T, E](Exception):
+class ResultException[T, E](Exception):  # noqa: N818
     """
     Represents an exception that occurs when trying to unwrap a Result object.
 
@@ -25,7 +26,7 @@ class ResultException[T, E](Exception):
     inner: "Result[T,E]"
     expect_msg = None
 
-    def __init__(self, inner: "Result[T,E]", expect_msg: Optional[str] = None):
+    def __init__(self, inner: "Result[T,E]", expect_msg: str | None = None):
         self.inner = inner
         self.expect_msg = expect_msg
 
@@ -33,7 +34,7 @@ class ResultException[T, E](Exception):
         return f"ResultException: {self.expect_msg}\n{self.inner}"
 
 
-class PropagatedResultException[T, E](Exception):
+class PropagatedResultException[T, E](Exception):  # noqa: N818
     """
     Represents an exception that occurs when trying to propagate a Result object.
 
@@ -120,7 +121,7 @@ class Result[T, E]:
         """
         try:
             return Ok(f())
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             return Err(e)
 
     @staticmethod
@@ -161,7 +162,7 @@ class Result[T, E]:
         """
         try:
             return Ok(await f())
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             return Err(e)
 
     def is_ok(self) -> bool:
@@ -254,7 +255,7 @@ class Result[T, E]:
         """
         return self.error is not None and f(self.error)
 
-    def ok(self) -> "Optional[T]":
+    def ok(self) -> "T | None":
         """
         Returns the value if the result is Ok, otherwise returns None.
 
@@ -273,7 +274,7 @@ class Result[T, E]:
             return self.value
         return None
 
-    def err(self) -> "Optional[E]":
+    def err(self) -> "E | None":
         """
         Returns the error value if the result is an Err, otherwise returns None.
 
@@ -674,7 +675,6 @@ class Result[T, E]:
             f(self.error)
         return self
 
-
     def and_also[U](self, res: "Result[U, E]") -> "Result[U, E]":
         """
         Returns the given Result object `res` if this Result object is Ok.
@@ -841,7 +841,7 @@ class Result[T, E]:
         return self.__str__()
 
 
-def Ok[T](inner: T) -> Result[T, Any]:
+def Ok[T](inner: T) -> Result[T, Any]:  # noqa: N802
     """
     Creates a Result object with a successful outcome.
 
@@ -858,7 +858,7 @@ def Ok[T](inner: T) -> Result[T, Any]:
     return Result(inner, None)
 
 
-def Err[E](inner: E) -> Result[Any, E]:
+def Err[E](inner: E) -> Result[Any, E]:  # noqa: N802
     """
     Creates a Result object representing an error.
 

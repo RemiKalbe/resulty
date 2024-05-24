@@ -6,18 +6,13 @@ jobs:
   build-publish:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [dev-py312]
     env:
       PYPI_USER: __token__
-      PYPY_TOKEN: ${{ secrets.PYPI_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - uses: prefix-dev/setup-pixi@v0.8.0
-        with:
-          environments: ${{ matrix.environment }}
+      - name: Install Hatch
+        uses: pypa/hatch@install
       - name: Build
-        run: pixi r -e ${{ matrix.environment }} build
+        run: hatch build
       - name: Publish
-        run: pixi r -e ${{ matrix.environment }} publish-ci --password $PYPY_TOKEN --username $PYPI_USER
+        run: hatch publish --user $PYPI_USER --token ${{ secrets.PYPI_TOKEN }} --no-prompt
