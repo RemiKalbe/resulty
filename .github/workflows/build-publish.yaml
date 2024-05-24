@@ -9,9 +9,8 @@ jobs:
     strategy:
       matrix:
         environment: [dev-py312]
-    environment:
-      name: pypi
-      url: https://pypi.org/p/resulty
+    env:
+      HATCH_INDEX_AUTH: ${{ secrets.PYPI_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: prefix-dev/setup-pixi@v0.8.0
@@ -20,6 +19,4 @@ jobs:
       - name: Build
         run: pixi r -e ${{ matrix.environment }} build
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_TOKEN }}
+        run: pixi r -e ${{ matrix.environment }} publish
