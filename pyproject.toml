@@ -43,7 +43,7 @@ check-fix-watch = "ruff check --fix --watch"
 format = "ruff format"
 build = "hatch build"
 publish = "hatch publish"
-publish-ci = { cmd = "hatch publish --no-prompt --yes", env = { HATCH_INDEX_USER = "__token__", HATCH_INDEX_AUTH = "" } }
+publish-ci = { cmd = "hatch publish dist --no-prompt --yes", env = { HATCH_INDEX_USER = "__token__", HATCH_INDEX_AUTH = "" } }
 
 [tool.pixi.feature.test.tasks]
 test = "pytest --tb=long --cov --cov-report xml -vv"
