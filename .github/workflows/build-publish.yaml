@@ -10,6 +10,7 @@ jobs:
       matrix:
         environment: [dev-py312]
     env:
+      HATCH_INDEX_USER: __token__
       HATCH_INDEX_AUTH: ${{ secrets.PYPI_TOKEN }}
     steps:
       - uses: actions/checkout@v4
