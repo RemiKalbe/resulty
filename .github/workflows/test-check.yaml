@@ -31,7 +31,7 @@ jobs:
       - name: Install Hatch
         uses: pypa/hatch@install
       - name: Run check
-        run: hatch fmt
+        run: hatch fmt --check
 
   call-build-publish:
     if: startsWith(github.ref, 'refs/tags/v')
