@@ -14,8 +14,6 @@
 - Unique decorator-based error propagation with `propagate_result` and `async_propagate_result`, mimicking the `?` operator in Rust
 - Supports both synchronous and asynchronous code
 
-Sure! Here's a table of contents that lists all the sections and methods in the `resulty` documentation. You can click on each item to navigate to the corresponding section or method.
-
 ## Table of Contents
 
 1. [Installation](#installation)
